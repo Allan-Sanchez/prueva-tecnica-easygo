@@ -12,16 +12,15 @@ function PoetryInput() {
           required: true,
           message: "Este campo es obligatorio!",
         },
-        {
-          validateTrigger: "onBlur",
-        },
       ]}
     >
       <Select
-        defaultValue="lirica"
-        style={{ width: 120 }}
+        defaultValue="inital"
+        style={{ width: 250 }}
         // onChange={handleChange}
       >
+        {" "}
+        <Option value="inital">-- Selecciona la categoria --</Option>
         <Option value="lirica">lírica</Option>
         <Option value="epica">épica</Option>
         <Option value="dramatica">dramática</Option>

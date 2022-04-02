@@ -10,16 +10,14 @@ function PhoneInput() {
         {
           required: true,
           message: "Escribir un numero de telefono!",
-          type: "integer",
-          message: "Escribir un numero de telefono valido",
         },
         {
-          validateTrigger: "onBlur",
+          type: "integer",
+          message: "Este campo debe ser numerico",
         },
-        ,
       ]}
     >
-      <InputNumber />
+      <InputNumber style={{ width: 200 }} />
     </Form.Item>
   );
 }

@@ -13,18 +13,16 @@ function GenderInput() {
           required: true,
           message: "Este campo es obligatorio!",
         },
-        {
-          validateTrigger: "onBlur",
-        },
       ]}
     >
       <Select
-        defaultValue="masculino"
-        style={{ width: 120 }}
+        defaultValue="inital"
+        style={{ width: 250 }}
         // onChange={handleChange}
       >
-        <Option value="masculino">Masculino</Option>
-        <Option value="Femenino">Femenino</Option>
+        <Option value="inital">-- Selecciona tu genero --</Option>
+        <Option value="M">Masculino</Option>
+        <Option value="F">Femenino</Option>
       </Select>
     </Form.Item>
   );
