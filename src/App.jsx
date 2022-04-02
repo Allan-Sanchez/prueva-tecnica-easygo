@@ -1,12 +1,8 @@
 import { useState } from "react";
+import AppRoter from "./router/AppRouter";
 
 function App() {
-
-  return (
-    <div className="App">
-      <h2>prueva tecnica</h2>
-    </div>
-  );
+  return <AppRoter />;
 }
 
 export default App;
