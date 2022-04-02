@@ -9,7 +9,7 @@ export const addOneDate = async (data) => {
   try {
     const res = await fetch(`${API}/calendar`, {
       method: "POST",
-      body: JSON.stringify({ data }),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },

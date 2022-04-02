@@ -33,18 +33,11 @@ function RegisterPage() {
     delete values.dateBirth;
     const data = { ...values, birth };
 
-    // const response = await addOneDate(data);
     try {
-      const res = await fetch(`http://localhost:4000/api/calendar`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const response = await res.json();
+      const response = await addOneDate(data);
       form.resetFields();
       console.log(response);
+      navigate("/report")
     } catch (error) {
       return error;
     }
