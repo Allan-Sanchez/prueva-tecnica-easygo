@@ -1,5 +1,8 @@
 import React from "react";
 import { Form, DatePicker } from "antd";
+import moment from "moment";
+
+const dateFormat = "YYYY/MM/DD";
 
 const isDateValidated = (value) => {
   // validate that you are of legal age
@@ -21,7 +24,7 @@ function BirthInput() {
   return (
     <Form.Item
       label="Fecha de Nacimiento"
-      name="birth"
+      name="dateBirth"
       rules={[
         {
           required: true,
@@ -34,7 +37,7 @@ function BirthInput() {
         }),
       ]}
     >
-      <DatePicker />
+      <DatePicker format={dateFormat} />
     </Form.Item>
   );
 }

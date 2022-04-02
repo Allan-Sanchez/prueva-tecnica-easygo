@@ -2,6 +2,8 @@ import React from "react";
 import { Row, Card, Form, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 
+import { addOneDate } from "../API/apiCalendar";
+
 // components
 import CarnetInput from "../components/formRegister/CarnetInput";
 import NameInput from "../components/formRegister/NameInput";
@@ -13,14 +15,39 @@ import CareerInput from "../components/formRegister/CareerInput";
 import PoetryInput from "../components/formRegister/PoetryInput";
 
 function RegisterPage() {
+  const [form] = Form.useForm();
   const navigate = useNavigate();
 
   const handleRedirectReport = () => {
     navigate("/report");
   };
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = async (values) => {
+    const handleDate = new Date(values.dateBirth._d);
+    const year = handleDate.getFullYear();
+    const month = handleDate.getMonth() + 1;
+    const day = handleDate.getDate();
+    const birth = `${year}-${month}-${day}`;
+
+    // remove element
+    delete values.dateBirth;
+    const data = { ...values, birth };
+
+    // const response = await addOneDate(data);
+    try {
+      const res = await fetch(`http://localhost:4000/api/calendar`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const response = await res.json();
+      form.resetFields();
+      console.log(response);
+    } catch (error) {
+      return error;
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -41,6 +68,7 @@ function RegisterPage() {
           headStyle={{ textAlign: "center" }}
         >
           <Form
+            form={form}
             name="basic"
             labelCol={{
               span: 8,
