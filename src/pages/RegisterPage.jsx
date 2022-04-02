@@ -1,17 +1,16 @@
 import React from "react";
-import {
-  Row,
-  Card,
-  Form,
-  Input,
-  Button,
-  Select,
-  InputNumber,
-  DatePicker,
-} from "antd";
+import { Row, Card, Form, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 
-const { Option } = Select;
+// components
+import CarnetInput from "../components/formRegister/CarnetInput";
+import NameInput from "../components/formRegister/NameInput";
+import AddressInput from "../components/formRegister/AddressInput";
+import GenderInput from "../components/formRegister/GenderInput";
+import PhoneInput from "../components/formRegister/PhoneInput";
+import BirthInput from "../components/formRegister/BirthInput";
+import CareerInput from "../components/formRegister/CareerInput";
+import PoetryInput from "../components/formRegister/PoetryInput";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -56,126 +55,21 @@ function RegisterPage() {
             onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
-            <Form.Item
-              label="Carnet"
-              name="carnet"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your username!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+            <CarnetInput />
 
-            <Form.Item
-              label="Nombre completo"
-              name="name"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+            <NameInput />
 
-            <Form.Item
-              label="Direccion"
-              name="address"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+            <AddressInput />
 
-            <Form.Item
-              label="Genero"
-              name="gender"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-            >
-              <Select
-                defaultValue="masculino"
-                style={{ width: 120 }}
-                // onChange={handleChange}
-              >
-                <Option value="masculino">Masculino</Option>
-                <Option value="Femenino">Femenino</Option>
-              </Select>
-            </Form.Item>
+            <GenderInput />
 
-            <Form.Item
-              label="Telefono"
-              name="phone"
-              rules={[
-                {
-                  required: true,
-                  message: "Escribir un numero de telefono!",
-                  type: "integer",
-                  message: "Escribir un numero de telefono valido",
-                },
-              ]}
-            >
-              <InputNumber />
-            </Form.Item>
+            <PhoneInput />
 
-            <Form.Item
-              label="Fecha de Nacimiento"
-              name="birth"
-              rules={[
-                {
-                  required: true,
-                  message: "Escribir un numero de telefono!",
-                },
-              ]}
-            >
-              <DatePicker />
-            </Form.Item>
+            <BirthInput />
 
-            <Form.Item
-              label="Carrera"
-              name="career"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+            <CareerInput />
 
-            <Form.Item
-              label="Genero de poesia"
-              name="poetry"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-            >
-              <Select
-                defaultValue="lirica"
-                style={{ width: 120 }}
-                // onChange={handleChange}
-              >
-                <Option value="lirica">lírica</Option>
-                <Option value="epica">épica</Option>
-                <Option value="dramatica">dramática</Option>
-              </Select>
-            </Form.Item>
+            <PoetryInput />
 
             <Form.Item
               wrapperCol={{
