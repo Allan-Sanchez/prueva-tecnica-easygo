@@ -1,8 +1,9 @@
 import React from "react";
-import { Row, Card, Form, Button } from "antd";
+import { Row, Card, Form, Button, notification } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import { addOneDate } from "../API/apiCalendar";
+import { meses, dias_semana } from "../utils/utilDate";
 
 // components
 import CarnetInput from "../components/formRegister/CarnetInput";
@@ -36,8 +37,22 @@ function RegisterPage() {
     try {
       const response = await addOneDate(data);
       form.resetFields();
-      console.log(response);
-      navigate("/report")
+
+      const responsNewDay = new Date(response.competitionDate);
+
+      notification.open({
+        duration: 30,
+        message: "Registro exitoso",
+        description: `Felicidades fecha es: ${
+          dias_semana[responsNewDay.getDay()]
+        },${responsNewDay.getDate()} de ${
+          meses[responsNewDay.getMonth()]
+        },del ${responsNewDay.getUTCFullYear()}`,
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
+      navigate("/report");
     } catch (error) {
       return error;
     }
