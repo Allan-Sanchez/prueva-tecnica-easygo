@@ -1,8 +1,11 @@
 # Prueba Teacnica Easygo
 
-# Creacion de Backend y Frontend
+# Tecnologias Utilizadas
 
-utilize el orm Prism,typescript,express
+1. vite
+2. React
+3. React Router dom
+4. AntDesing
 
 # modulos terminados
 
