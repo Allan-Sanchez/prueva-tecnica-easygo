@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Button, Row, List, Avatar, Col } from "antd";
 import { useNavigate } from "react-router-dom";
 import { getCalendar } from "../API/apiCalendar";
+import MyTable from "../components/MyTable";
 // import MyTable from "../components/MyTable";
 
 function ReportPage() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
- 
-
 
   useEffect(async () => {
     const response = await getCalendar();
@@ -27,25 +26,8 @@ function ReportPage() {
         </Button>
       </div>
       <Row justify="center">
-        <Col span={24}>
-          {data ? (
-            <List
-              itemLayout="horizontal"
-              dataSource={data}
-              renderItem={(item) => (
-                // console.log(item)
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                    title={<a href="https://ant.design">{item.name}</a>}
-                    description={item.name}
-                  />
-                </List.Item>
-              )}
-            />
-          ) : null}
-        </Col>
-      </Row>
+        <Col span={24}>{data ? <MyTable  data={data}/> : null}</Col>
+      </Row> 
     </div>
   );
 }

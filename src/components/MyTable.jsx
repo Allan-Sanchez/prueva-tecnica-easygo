@@ -1,76 +1,74 @@
 import React from "react";
 import { Table, Space, Avatar, Button } from "antd";
+import { dias_semana, meses } from "../utils/utilDate";
 
 const { Column } = Table;
 
-const dataSource = [
-  {
-    key: "1",
-    name: "Mike",
-    age: 32,
-    address: "10 Downing Street",
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street",
-  },
-];
-
-const columns = [
-  {
-    title: "Carnet",
-    dataIndex: "carnet",
-    key: "carnet",
-  },
-  {
-    title: "Nombre",
-    dataIndex: "name",
-    key: "name",
-  },
-];
-
 function MyTable({ data }) {
-  console.log(data);
-
   if (!data) {
     return;
   }
   return (
-    <Table dataSource={dataSource} columns={columns} />
-    // <Table dataSource={data} rowKey={(item) => item.id}>
-    //   {/* <Column title="Nombre" dataIndex="name" key="name" />
-    //   <Column
-    //     responsive={["sm"]}
-    //     title="imagen"
-    //     dataIndex="urlImage"
-    //     render={(info) => {
-    //       return (
-    //         <Space size="middle">
-    //           <Avatar size={60} src={info} />
-    //         </Space>
-    //       );
-    //     }}
-    //   />
-    //   <Column
-    //     responsive={["md"]}
-    //     title="Direccion"
-    //     dataIndex="address"
-    //     key="address"
-    //   />
-    //   <Column
-    //     title="Acciones"
-    //     render={(info, render) => {
-    //       return (
-    //         <Space>
-    //           <Button type="primary">ver</Button>
-    //           <Button danger>Eliminar</Button>
-    //         </Space>
-    //       );
-    //     }} */}
-    //   {/* /> */}
-    // </Table>
+    // <Table dataSource={data} columns={columns} />
+    <Table dataSource={data} rowKey={(item) => item.id}>
+      <Column title="Nombre" dataIndex="name" key="name" />
+      <Column
+        responsive={["sm"]}
+        title="Fecha de declamación  "
+        dataIndex="competitionDate"
+        key="competitionDate"
+        render={(info) => {
+          const responsNewDay = new Date(info);
+          console.log(`info${responsNewDay}`);
+
+          return (
+            <Space size="middle">{` ${
+              dias_semana[responsNewDay.getDay()]
+            },${responsNewDay.getDate()} de ${
+              meses[responsNewDay.getMonth()]
+            },del ${responsNewDay.getUTCFullYear()}`}</Space>
+          );
+        }}
+      />
+      <Column
+        responsive={["md"]}
+        title="Categoria"
+        dataIndex="poetry"
+        key="poetry"
+        filters={[
+          {
+            text: "epica",
+            value: "epica",
+          },
+          {
+            text: "lirica",
+            value: "lirica",
+          },
+          {
+            text: "dramatica",
+            value: "dramatica",
+          },
+        ]}
+        onFilter={(value, record) => record.poetry.indexOf(value) === 0}
+      />
+      <Column
+        responsive={["md"]}
+        title="Direccion"
+        dataIndex="address"
+        key="address"
+      />
+      <Column
+        title="Acciones"
+        render={(info, render) => {
+          return (
+            <Space>
+              <Button type="primary">ver</Button>
+              <Button danger>Eliminar</Button>
+            </Space>
+          );
+        }}
+      />
+    </Table>
   );
 }
 
